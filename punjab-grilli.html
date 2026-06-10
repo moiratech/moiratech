@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Punjab Grilli — Authentic Indian Cuisine · Kokkola</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --saffron:#E8861A;--gold:#D4A017;--crimson:#7B1A1A;
+  --dark:#0D0805;--card:#1C1108;--surface:#100904;
+  --cream:#FDF6E3;--muted:#A89060;--border:#2E1E08;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--dark);color:var(--cream);font-family:'Lato',sans-serif;overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:rgba(13,8,5,0.97);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:62px;backdrop-filter:blur(8px);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--saffron);letter-spacing:0.06em;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--saffron);}
+.nav-cta{background:var(--saffron);color:#fff;border:none;padding:8px 18px;font-family:'Lato',sans-serif;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border-radius:1px;font-weight:700;transition:background 0.2s;}
+.nav-cta:hover{background:#C8720E;}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:90vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+
+.slides-wrap{position:absolute;inset:0;z-index:0;}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;}
+.slide.active{opacity:1;}
+.slide img{width:100%;height:100%;object-fit:cover;object-position:center;transform-origin:center;animation:none;}
+.slide.active img{animation:kenburns 8s ease-in-out forwards;}
+
+@keyframes kenburns{
+  0%{transform:scale(1.08) translateX(0);}
+  100%{transform:scale(1.18) translateX(-2%);}
+}
+@keyframes kenburns2{
+  0%{transform:scale(1.1) translateX(2%);}
+  100%{transform:scale(1.18) translateX(0);}
+}
+@keyframes kenburns3{
+  0%{transform:scale(1.06) translateY(-2%);}
+  100%{transform:scale(1.15) translateY(2%);}
+}
+
+.slide-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,8,5,0.82) 0%,rgba(13,8,5,0.55) 50%,rgba(13,8,5,0.78) 100%);z-index:1;}
+.slide-dots{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:8px;}
+.dot{width:6px;height:6px;border-radius:50%;border:1px solid var(--muted);background:transparent;cursor:pointer;transition:background 0.3s,border-color 0.3s;}
+.dot.active{background:var(--saffron);border-color:var(--saffron);}
+
+.hero-content{position:relative;z-index:5;text-align:center;padding:2rem;}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--saffron);margin-bottom:1.4rem;animation:fadeUp 0.9s ease both;}
+.eyebrow-line{width:32px;height:1px;background:var(--saffron);}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:4.5rem;font-weight:300;line-height:1.05;color:var(--cream);margin-bottom:0.3rem;animation:fadeUp 0.9s 0.1s ease both;opacity:0;animation-fill-mode:forwards;}
+.hero h1 em{font-style:italic;font-weight:600;color:var(--saffron);}
+.hero h1 span{display:block;font-size:1.8rem;font-weight:300;letter-spacing:0.1em;color:rgba(253,246,227,0.55);margin-top:0.3rem;}
+.tagline{color:var(--muted);font-size:1rem;letter-spacing:0.04em;line-height:1.8;max-width:440px;margin:1.2rem auto 2.2rem;animation:fadeUp 0.9s 0.22s ease both;opacity:0;animation-fill-mode:forwards;}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.9s 0.34s ease both;opacity:0;animation-fill-mode:forwards;}
+.btn-fire{background:var(--saffron);color:#fff;border:none;padding:15px 32px;font-family:'Lato',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;border-radius:1px;text-decoration:none;display:inline-block;transition:background 0.2s,transform 0.15s;}
+.btn-fire:hover{background:#C8720E;transform:translateY(-2px);}
+.btn-ghost{background:transparent;color:var(--cream);border:1px solid rgba(253,246,227,0.3);padding:15px 32px;font-family:'Lato',sans-serif;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;border-radius:1px;text-decoration:none;display:inline-block;transition:border-color 0.2s,color 0.2s;}
+.btn-ghost:hover{border-color:var(--saffron);color:var(--saffron);}
+
+/* ── TICKER ── */
+.ticker-wrap{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;white-space:nowrap;padding:0;}
+.ticker-inner{display:inline-block;animation:slideLeft 28s linear infinite;}
+.ticker-inner span{display:inline-block;padding:0.7rem 2rem;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:#5A3A18;}
+
+/* ── STRIP ── */
+.strip{display:flex;background:#100904;border-bottom:1px solid var(--border);}
+.strip-item{flex:1;padding:1.5rem 1rem;text-align:center;border-right:1px solid var(--border);}
+.strip-item:last-child{border-right:none;}
+.strip-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:var(--saffron);line-height:1;}
+.strip-label{font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-top:5px;}
+
+/* ── ABOUT ── */
+.about{background:#0A0603;padding:4rem 2rem;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;max-width:1000px;margin:0 auto;}
+.about-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.about-img-grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:1px;transition:transform 0.4s;}
+.about-img-grid img:hover{transform:scale(1.03);}
+.about-img-grid img:first-child{grid-row:span 2;aspect-ratio:auto;height:100%;}
+.sec-eyebrow{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--saffron);margin-bottom:0.5rem;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:300;color:var(--cream);line-height:1.1;margin-bottom:0.3rem;}
+.sec-title em{font-style:italic;color:var(--saffron);}
+.sec-rule{width:40px;height:1px;background:var(--saffron);margin:0.9rem 0;}
+.sec-sub{color:var(--muted);font-size:0.92rem;line-height:1.8;max-width:500px;}
+.about-stats{display:flex;gap:2rem;margin-top:2rem;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--saffron);font-weight:600;line-height:1;}
+.stat-label{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:3px;}
+
+/* ── MENU ── */
+.menu-sec{background:var(--surface);padding:3.5rem 2rem;}
+.tab-row{display:flex;gap:0;border-bottom:1px solid var(--border);margin:1.5rem 0 0;overflow-x:auto;}
+.tab-btn{background:none;border:none;color:var(--muted);font-family:'Lato',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;padding:11px 20px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:color 0.2s,border-color 0.2s;}
+.tab-btn.on{color:var(--saffron);border-bottom-color:var(--saffron);}
+.tab-btn:hover:not(.on){color:var(--cream);}
+.dish-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--border);margin-top:1px;}
+.dish{background:var(--card);padding:1.3rem;transition:background 0.18s;position:relative;overflow:hidden;}
+.dish::before{content:'';position:absolute;top:0;left:0;width:2px;height:0;background:var(--saffron);transition:height 0.3s ease;}
+.dish:hover::before{height:100%;}
+.dish:hover{background:#241608;}
+.dish-img{width:100%;height:140px;object-fit:cover;border-radius:1px;margin-bottom:0.8rem;transition:transform 0.4s;}
+.dish:hover .dish-img{transform:scale(1.04);}
+.dish-top{display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;margin-bottom:0.4rem;}
+.dish-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--cream);line-height:1.2;}
+.dish-price{color:var(--saffron);font-weight:700;font-size:0.95rem;white-space:nowrap;}
+.dish-desc{color:var(--muted);font-size:0.8rem;line-height:1.6;}
+.tag{display:inline-block;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 8px;margin-top:0.5rem;border-radius:1px;}
+.tag-v{background:#0D2B10;color:#6DBF7A;}
+.tag-s{background:#2B0D0D;color:#E07A7A;}
+.tag-c{background:#2B1E08;color:#E8861A;}
+.panel{display:none;}.panel.on{display:block;}
+
+/* ── FEATURE STRIP ── */
+.feat-strip{display:grid;grid-template-columns:repeat(3,1fr);background:var(--crimson);position:relative;overflow:hidden;}
+.feat-strip::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ffffff' fill-opacity='0.04' d='M20 0l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z'/%3E%3C/svg%3E");}
+.feat-item{padding:2.5rem 1.5rem;text-align:center;border-right:1px solid rgba(255,255,255,0.12);position:relative;z-index:1;}
+.feat-item:last-child{border-right:none;}
+.feat-item i{font-size:26px;color:rgba(255,255,255,0.8);margin-bottom:0.8rem;display:block;}
+.feat-item h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#fff;margin-bottom:0.3rem;}
+.feat-item p{font-size:0.8rem;color:rgba(255,255,255,0.6);line-height:1.6;}
+
+/* ── INFO ── */
+.info-sec{background:var(--dark);padding:3.5rem 2rem;}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--border);margin-top:2rem;border:1px solid var(--border);}
+.info-box{background:var(--card);padding:1.4rem;transition:background 0.18s;}
+.info-box:hover{background:#241608;}
+.info-box i{font-size:20px;color:var(--saffron);margin-bottom:0.8rem;display:block;}
+.info-box h4{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--cream);margin-bottom:0.4rem;}
+.info-box p{color:var(--muted);font-size:0.82rem;line-height:1.7;}
+.info-box a{color:var(--saffron);text-decoration:none;}
+
+/* ── REVIEWS ── */
+.rev-sec{background:var(--surface);padding:3.5rem 2rem;}
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px;background:var(--border);margin-top:2rem;border:1px solid var(--border);}
+.rev-card{background:var(--card);padding:1.3rem;}
+.stars{color:var(--gold);font-size:13px;letter-spacing:3px;margin-bottom:0.5rem;}
+.rev-text{color:var(--muted);font-size:0.83rem;line-height:1.7;font-style:italic;margin-bottom:0.7rem;}
+.rev-by{color:rgba(253,246,227,0.35);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;}
+
+/* ── ORDER ── */
+.order-sec{background:var(--crimson);text-align:center;padding:5rem 2rem;position:relative;overflow:hidden;}
+.order-sec::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ffffff' fill-opacity='0.04' d='M20 0l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z'/%3E%3C/svg%3E");}
+.order-inner{position:relative;z-index:1;}
+.order-eyebrow{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:0.5rem;}
+.order-title{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:#fff;line-height:1.1;margin-bottom:0.5rem;}
+.order-title em{font-style:italic;color:#FFD080;}
+.order-sub{color:rgba(255,255,255,0.6);max-width:400px;margin:0.5rem auto 2.5rem;font-size:0.92rem;line-height:1.7;}
+.order-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.wolt-btn{display:inline-flex;align-items:center;gap:8px;background:#009DE0;color:#fff;border:none;padding:15px 30px;font-family:'Lato',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.06em;cursor:pointer;border-radius:2px;text-decoration:none;transition:background 0.2s;}
+.wolt-btn:hover{background:#007BB5;}
+.call-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.4);padding:15px 30px;font-family:'Lato',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.06em;cursor:pointer;border-radius:2px;text-decoration:none;transition:background 0.2s;}
+.call-btn:hover{background:rgba(255,255,255,0.2);}
+
+/* ── FOOTER ── */
+footer{background:#060402;border-top:1px solid var(--border);padding:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--saffron);font-weight:600;}
+.footer-copy{color:var(--muted);font-size:0.75rem;}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:0.75rem;transition:color 0.2s;}
+.footer-links a:hover{color:var(--saffron);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes slideLeft{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+@media(max-width:700px){
+  .about-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:2.8rem;}
+  .feat-strip{grid-template-columns:1fr;}
+  .feat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.12);}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Punjab Grilli</span>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#visit">Visit</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Order Now</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="slides-wrap" id="slides">
+    <div class="slide active">
+      <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=1600&q=80" alt="Indian biryani dish"/>
+      <div class="slide-overlay"></div>
+    </div>
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=1600&q=80" alt="Butter chicken curry"/>
+      <div class="slide-overlay"></div>
+    </div>
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1574653853027-5382a3d23a15?w=1600&q=80" alt="Tandoori chicken"/>
+      <div class="slide-overlay"></div>
+    </div>
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=1600&q=80" alt="Indian food spread"/>
+      <div class="slide-overlay"></div>
+    </div>
+  </div>
+  <div class="slide-dots" id="dots"></div>
+
+  <div class="hero-content">
+    <div class="eyebrow"><span class="eyebrow-line"></span>Authentic Indian Cuisine · Kokkola<span class="eyebrow-line"></span></div>
+    <h1>Where Spice<br><em>Meets Soul</em><span>A hidden gem in Finland</span></h1>
+    <p class="tagline">Tandoor-fired breads, aromatic biryanis, rich curries. Handcrafted to order, served with warmth.</p>
+    <div class="hero-btns">
+      <a class="btn-fire" href="#menu">Explore Menu</a>
+      <a class="btn-ghost" href="https://wolt.com/en/fin/kokkola/restaurant/punjab-grill" target="_blank">Order on Wolt</a>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner" id="ticker"></div>
+</div>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-item"><div class="strip-num">4.7★</div><div class="strip-label">TripAdvisor</div></div>
+  <div class="strip-item"><div class="strip-num">98%</div><div class="strip-label">Recommend</div></div>
+  <div class="strip-item"><div class="strip-num">101+</div><div class="strip-label">Reviews</div></div>
+  <div class="strip-item"><div class="strip-num">Wolt</div><div class="strip-label">Delivery</div></div>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-grid">
+    <div class="about-img-grid">
+      <img src="https://images.unsplash.com/photo-1589647363585-f4a7d3877b10?w=600&q=80" alt="Indian spices"/>
+      <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=600&q=80" alt="Naan bread"/>
+      <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=600&q=80" alt="Curry dish"/>
+    </div>
+    <div>
+      <p class="sec-eyebrow">Our Story</p>
+      <h2 class="sec-title">Kokkola's Most <em>Authentic</em> Indian Kitchen</h2>
+      <div class="sec-rule"></div>
+      <p class="sec-sub">A small restaurant with enormous flavour. We brought the tandoor clay oven, the slow-simmered curries, and the warmth of Indian hospitality to the heart of Kokkola. Every dish is cooked to order — no shortcuts, no compromises.</p>
+      <div class="about-stats">
+        <div><div class="stat-num">#1</div><div class="stat-label">Indian in Kokkola</div></div>
+        <div><div class="stat-num">7+</div><div class="stat-label">Years serving</div></div>
+        <div><div class="stat-num">30+</div><div class="stat-label">Dishes</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu" class="menu-sec">
+  <p class="sec-eyebrow">What We Serve</p>
+  <h2 class="sec-title">The <em>Menu</em></h2>
+  <div class="sec-rule"></div>
+  <p class="sec-sub">From clay-oven tikkas to soul-warming biryanis — made fresh, every time.</p>
+
+  <div class="tab-row">
+    <button class="tab-btn on" onclick="switchTab('mains',this)">Mains</button>
+    <button class="tab-btn" onclick="switchTab('biryani',this)">Biryani</button>
+    <button class="tab-btn" onclick="switchTab('starters',this)">Starters</button>
+    <button class="tab-btn" onclick="switchTab('breads',this)">Breads</button>
+    <button class="tab-btn" onclick="switchTab('pizza',this)">Pizza & Kebab</button>
+  </div>
+
+  <div id="p-mains" class="panel on">
+    <div class="dish-grid">
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=500&q=75" alt="Butter Chicken"/>
+        <div class="dish-top"><span class="dish-name">Butter Chicken</span><span class="dish-price">€14</span></div>
+        <p class="dish-desc">Tender chicken in a velvety tomato-cream sauce with aromatic spices.</p><span class="tag tag-c">Chef's Pick</span>
+      </div>
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=75" alt="Palak Paneer"/>
+        <div class="dish-top"><span class="dish-name">Palak Paneer</span><span class="dish-price">€13</span></div>
+        <p class="dish-desc">Cottage cheese cubes in a smooth spiced spinach sauce.</p><span class="tag tag-v">Vegetarian</span>
+      </div>
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1545247181-516773cae754?w=500&q=75" alt="Lamb Curry"/>
+        <div class="dish-top"><span class="dish-name">Lamb Curry</span><span class="dish-price">€15</span></div>
+        <p class="dish-desc">Slow-simmered tender lamb in a rich deeply spiced sauce.</p><span class="tag tag-s">Spicy</span>
+      </div>
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=500&q=75" alt="Chicken Tikka Masala"/>
+        <div class="dish-top"><span class="dish-name">Chicken Tikka Masala</span><span class="dish-price">€14</span></div>
+        <p class="dish-desc">Grilled chicken in a smoky creamy tomato masala.</p><span class="tag tag-c">Chef's Pick</span>
+      </div>
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500&q=75" alt="Red Curry Chicken"/>
+        <div class="dish-top"><span class="dish-name">Red Curry Chicken</span><span class="dish-price">€14</span></div>
+        <p class="dish-desc">Bold red curry with fragrant herbs and coconut.</p><span class="tag tag-s">Spicy</span>
+      </div>
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1574653853027-5382a3d23a15?w=500&q=75" alt="Paneer Tikka"/>
+        <div class="dish-top"><span class="dish-name">Paneer Tikka</span><span class="dish-price">€13</span></div>
+        <p class="dish-desc">Marinated cottage cheese grilled in the tandoor oven.</p><span class="tag tag-v">Vegetarian</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="p-biryani" class="panel">
+    <div class="dish-grid">
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=500&q=75" alt="Chicken Biryani"/>
+        <div class="dish-top"><span class="dish-name">Chicken Biryani</span><span class="dish-price">€16</span></div>
+        <p class="dish-desc">Fragrant basmati layered with spiced chicken, saffron and fried onions.</p><span class="tag tag-c">Most Loved</span>
+      </div>
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1563379091339-03246a07ba01?w=500&q=75" alt="Lamb Biryani"/>
+        <div class="dish-top"><span class="dish-name">Lamb Biryani</span><span class="dish-price">€17</span></div>
+        <p class="dish-desc">Slow-cooked spiced lamb with saffron basmati — worth every minute of the wait.</p>
+      </div>
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1596797038530-2c107229654b?w=500&q=75" alt="Vegetable Biryani"/>
+        <div class="dish-top"><span class="dish-name">Vegetable Biryani</span><span class="dish-price">€14</span></div>
+        <p class="dish-desc">Seasonal vegetables, cashews and raisins in saffron rice.</p><span class="tag tag-v">Vegetarian</span>
+      </div>
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1517244683847-7456b63c5969?w=500&q=75" alt="Beef Biryani"/>
+        <div class="dish-top"><span class="dish-name">Beef Biryani</span><span class="dish-price">€17</span></div>
+        <p class="dish-desc">Hearty beef slow-cooked with whole spices in aromatic rice.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="p-starters" class="panel">
+    <div class="dish-grid">
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=500&q=75" alt="Chicken Tikka"/>
+        <div class="dish-top"><span class="dish-name">Chicken Tikka</span><span class="dish-price">€10</span></div>
+        <p class="dish-desc">Marinated chicken skewers grilled in the clay tandoor oven.</p>
+      </div>
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=75" alt="Samosa"/>
+        <div class="dish-top"><span class="dish-name">Samosa (2 pcs)</span><span class="dish-price">€6</span></div>
+        <p class="dish-desc">Crispy pastry filled with spiced potatoes and peas.</p><span class="tag tag-v">Vegetarian</span>
+      </div>
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=500&q=75" alt="Falafels"/>
+        <div class="dish-top"><span class="dish-name">Falafels</span><span class="dish-price">€8</span></div>
+        <p class="dish-desc">Golden chickpea fritters with yoghurt dip and fresh herbs.</p><span class="tag tag-v">Vegetarian</span>
+      </div>
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=500&q=75" alt="Seekh Kebab"/>
+        <div class="dish-top"><span class="dish-name">Seekh Kebab</span><span class="dish-price">€10</span></div>
+        <p class="dish-desc">Minced spiced lamb on skewers grilled to perfection.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="p-breads" class="panel">
+    <div class="dish-grid">
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=500&q=75" alt="Garlic Naan"/>
+        <div class="dish-top"><span class="dish-name">Garlic Naan</span><span class="dish-price">€3</span></div>
+        <p class="dish-desc">Soft leavened bread baked in the tandoor, brushed with garlic butter.</p><span class="tag tag-c">Most Ordered</span>
+      </div>
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=500&q=75" alt="Plain Naan"/>
+        <div class="dish-top"><span class="dish-name">Plain Naan</span><span class="dish-price">€2.50</span></div>
+        <p class="dish-desc">Classic tandoor bread — fluffy inside, lightly charred outside.</p>
+      </div>
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1574653853027-5382a3d23a15?w=500&q=75" alt="Cheese Naan"/>
+        <div class="dish-top"><span class="dish-name">Cheese Naan</span><span class="dish-price">€3.50</span></div>
+        <p class="dish-desc">Stuffed with melted cheese, baked in the tandoor.</p>
+      </div>
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=500&q=75" alt="Roti"/>
+        <div class="dish-top"><span class="dish-name">Roti</span><span class="dish-price">€2</span></div>
+        <p class="dish-desc">Whole wheat flatbread baked fresh to order.</p><span class="tag tag-v">Vegan</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="p-pizza" class="panel">
+    <div class="dish-grid">
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=500&q=75" alt="Tandoori Pizza"/>
+        <div class="dish-top"><span class="dish-name">Tandoori Chicken Pizza</span><span class="dish-price">€13</span></div>
+        <p class="dish-desc">Indian-spiced chicken, mozzarella and onions on house pizza base.</p><span class="tag tag-c">Unique Fusion</span>
+      </div>
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&q=75" alt="Custom Pizza"/>
+        <div class="dish-top"><span class="dish-name">Custom Pizza</span><span class="dish-price">€12+</span></div>
+        <p class="dish-desc">Choose your own toppings — ask staff for available options.</p>
+      </div>
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=500&q=75" alt="Shish Kebab"/>
+        <div class="dish-top"><span class="dish-name">Shish Kebab Platter</span><span class="dish-price">€15</span></div>
+        <p class="dish-desc">Mixed grilled meats with rice, salad and house sauces.</p>
+      </div>
+      <div class="dish">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=500&q=75" alt="Doner Kebab Wrap"/>
+        <div class="dish-top"><span class="dish-name">Doner Kebab Wrap</span><span class="dish-price">€10</span></div>
+        <p class="dish-desc">Thin-sliced doner in flatbread with garlic sauce and fresh vegetables.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE STRIP -->
+<div class="feat-strip">
+  <div class="feat-item">
+    <i class="ti ti-flame"></i>
+    <h4>Tandoor Clay Oven</h4>
+    <p>Every bread and tikka fired in a traditional clay tandoor — real heat, real flavour.</p>
+  </div>
+  <div class="feat-item">
+    <i class="ti ti-leaf"></i>
+    <h4>Fresh Every Day</h4>
+    <p>No pre-made sauces. Every curry is built from scratch with whole spices.</p>
+  </div>
+  <div class="feat-item">
+    <i class="ti ti-bike"></i>
+    <h4>Wolt Delivery</h4>
+    <p>Get authentic Indian food delivered hot to your door anywhere in Kokkola.</p>
+  </div>
+</div>
+
+<!-- VISIT -->
+<section id="visit" class="info-sec">
+  <p class="sec-eyebrow">Come Find Us</p>
+  <h2 class="sec-title">Visit <em>Punjab Grilli</em></h2>
+  <div class="sec-rule"></div>
+  <div class="info-grid">
+    <div class="info-box"><i class="ti ti-map-pin"></i><h4>Address</h4><p>Torikatu 18<br>Kokkola, Finland</p></div>
+    <div class="info-box"><i class="ti ti-clock"></i><h4>Hours</h4><p>Mon–Fri: 11:00–21:00<br>Sat–Sun: 12:00–20:00</p></div>
+    <div class="info-box"><i class="ti ti-phone"></i><h4>Call & Takeaway</h4><p><a href="tel:+358400211732">+358 40 021 1732</a><br>Call to order pickup</p></div>
+    <div class="info-box"><i class="ti ti-mail"></i><h4>Email</h4><p><a href="mailto:Punjabkokkola@hotmail.com">Punjabkokkola@hotmail.com</a></p></div>
+    <div class="info-box"><i class="ti ti-building-store"></i><h4>Dining Options</h4><p>Dine-in · Outdoor seating<br>Takeaway · Wolt delivery<br>Cards accepted</p></div>
+    <div class="info-box"><i class="ti ti-brand-facebook"></i><h4>Facebook</h4><p><a href="https://www.facebook.com/punjapgrilli" target="_blank">Punjab Grilli</a><br>Daily specials & hours posted there</p></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="rev-sec">
+  <p class="sec-eyebrow">What Guests Say</p>
+  <h2 class="sec-title">Real <em>Reviews</em></h2>
+  <div class="sec-rule"></div>
+  <div class="rev-grid">
+    <div class="rev-card"><div class="stars">★★★★★</div><p class="rev-text">"This tiny Indian restaurant is a hidden gem in Kokkola. One of the most authentic Indian restaurants in Finland."</p><span class="rev-by">— TripAdvisor</span></div>
+    <div class="rev-card"><div class="stars">★★★★★</div><p class="rev-text">"I have never had such excellent Indian food in Finland. The Biryani dishes were amazing and well worth the wait."</p><span class="rev-by">— TripAdvisor</span></div>
+    <div class="rev-card"><div class="stars">★★★★★</div><p class="rev-text">"Price-performance ratio is right and the staff is very friendly. Can be warmly recommended."</p><span class="rev-by">— TripAdvisor</span></div>
+    <div class="rev-card"><div class="stars">★★★★★</div><p class="rev-text">"Superb biryani. Chicken in the oven is a delicious choice. Warm and welcoming atmosphere every visit."</p><span class="rev-by">— Restaurant Guru</span></div>
+  </div>
+</section>
+
+<!-- ORDER -->
+<div id="order" class="order-sec">
+  <div class="order-inner">
+    <p class="order-eyebrow">Hungry Right Now?</p>
+    <h2 class="order-title">Order <em>Delivery</em><br>or Takeaway</h2>
+    <p class="order-sub">Get your favourite dishes delivered through Wolt, or call us directly to arrange pickup.</p>
+    <div class="order-btns">
+      <a class="wolt-btn" href="https://wolt.com/en/fin/kokkola/restaurant/punjab-grill" target="_blank"><i class="ti ti-bike"></i>Order on Wolt</a>
+      <a class="call-btn" href="tel:+358400211732"><i class="ti ti-phone"></i>+358 40 021 1732</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-brand">Punjab Grilli</span>
+  <span class="footer-copy">Torikatu 18, Kokkola &nbsp;·&nbsp; © 2025 Punjab Grilli</span>
+  <div class="footer-links">
+    <a href="https://www.facebook.com/punjapgrilli" target="_blank">Facebook</a>
+    <a href="https://wolt.com/en/fin/kokkola/restaurant/punjab-grill" target="_blank">Wolt</a>
+    <a href="mailto:Punjabkokkola@hotmail.com">Email</a>
+  </div>
+</footer>
+
+<script>
+const slides=document.querySelectorAll('.slide');
+const dotsWrap=document.getElementById('dots');
+const kbAnims=['kenburns','kenburns2','kenburns3','kenburns'];
+let cur=0,timer;
+
+slides.forEach((_,i)=>{
+  const d=document.createElement('button');
+  d.className='dot'+(i===0?' active':'');
+  d.setAttribute('aria-label','Slide '+(i+1));
+  d.onclick=()=>goTo(i);
+  dotsWrap.appendChild(d);
+});
+
+function goTo(n){
+  slides[cur].classList.remove('active');
+  dotsWrap.children[cur].classList.remove('active');
+  cur=n;
+  slides[cur].classList.add('active');
+  dotsWrap.children[cur].classList.add('active');
+  const img=slides[cur].querySelector('img');
+  img.style.animation='none';
+  void img.offsetWidth;
+  img.style.animation=kbAnims[cur]+" 8s ease-in-out forwards";
+  clearInterval(timer);
+  timer=setInterval(()=>goTo((cur+1)%slides.length),6000);
+}
+timer=setInterval(()=>goTo((cur+1)%slides.length),6000);
+
+function switchTab(name,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('p-'+name).classList.add('on');
+  btn.classList.add('on');
+}
+
+const items=['★ Chicken Biryani','✦ Butter Chicken','★ Garlic Naan','✦ Lamb Curry','★ Palak Paneer','✦ Tikka Masala','★ Seekh Kebab','✦ Tandoori Pizza','★ Samosa','✦ Doner Wrap'];
+const html=items.map(i=>`<span>${i}</span>`).join('');
+const t=document.getElementById('ticker');
+t.innerHTML=html+html;
+</script>
+</body>
+</html>
